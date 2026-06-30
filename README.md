@@ -54,8 +54,8 @@
 
 
 - venv 활성화
-    venv\Scripts\activate.ps1
+    * venv\Scripts\activate.ps1
 
 - 원격 저장소 연결 및 push
-    git branch -M main
-    git push -u origin main
+    * git branch -M main
+    * git push -u origin main
