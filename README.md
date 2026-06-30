@@ -48,3 +48,14 @@
 - [ ] 4일차: RAG 기반 서비스 + React UI
 
 - [ ] 5일차: Docker + 포트폴리오 완성
+
+## 메모
+
+
+
+- venv 활성화
+    venv\Scripts\activate.ps1
+
+- 원격 저장소 연결 및 push
+    git branch -M main
+    git push -u origin main
