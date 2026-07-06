@@ -2,11 +2,14 @@
 
 .env
 
+backend/.env
 
 
 # Python 실행 중 생기는 임시 파일들
 
 __pycache__/
+
+pycache/
 
 *.pyc
 
@@ -43,3 +46,8 @@ dist/
 .DS_Store
 
 Thumbs.db
+
+# Continue local config - may contain API keys
+.continue/config.yaml
+.continue/*.yaml
+.continue/*.json

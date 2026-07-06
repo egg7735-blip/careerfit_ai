@@ -23,13 +23,121 @@ CareerFit AI는 실제 취업 공고 데이터를 기반으로 사용자의 전�
 
 # 🛠 기술 스택
 
-| 영역         | 기술                       |
-| ---------- | ------------------------ |
-| Backend    | Python, FastAPI          |
-| AI API     | Gemini 2.5 Flash-Lite    |
-| Data       | Pandas, SQLite, ChromaDB |
-| Frontend   | React, Vite              |
-| Deployment | Docker                   |
+| 영역         | 기술                        |
+| ---------- | ------------------------- |
+| Backend    | Python, FastAPI           |
+| AI API     | Gemini 2.5 Flash-Lite     |
+| Data       | Pandas, SQLite, ChromaDB  |
+| Frontend   | React, Vite, Tailwind CSS |
+| Deployment | Docker                    |
+
+---
+
+# 🏗 프로젝트 아키텍처
+
+```text
+사용자
+    │
+    ▼
+React + Vite
+    │
+    ▼
+FastAPI (/analyze)
+    │
+    ├── ChromaDB (RAG 검색)
+    ├── SQLite (공고 데이터 저장)
+    └── Gemini API (AI 분석)
+    │
+    ▼
+분석 결과 + 참고 공고(sources)
+```
+
+---
+
+# 🚀 실행 방법
+
+## 백엔드 실행
+
+```bash
+cd backend
+
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+pip install -r requirements.txt
+
+uvicorn main:app --reload
+```
+
+백엔드 API 문서
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+## 프론트엔드 실행
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+프론트엔드
+
+```
+http://localhost:5173
+```
+
+백엔드 API
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+# 📊 데이터 파이프라인
+
+```text
+jobs.csv
+    │
+    ▼
+Pandas 전처리
+    │
+    ├── SQLite 저장
+    └── RAG 문서 생성
+            │
+            ▼
+       ChromaDB 저장
+            │
+            ▼
+사용자 질문 → 의미 기반 검색(RAG)
+            │
+            ▼
+Gemini API
+            │
+            ▼
+분석 결과 + Sources 반환
+```
+
+---
+
+# ✨ 주요 기능
+
+* [x] 역량 분석 입력 폼 (전공·스킬·관심 직무)
+* [x] 실제 취업 공고 데이터 조회
+* [x] ChromaDB 기반 의미 검색(RAG)
+* [x] Gemini API 기반 AI 역량 분석
+* [x] RAG 기반 AI 분석 결과 카드
+* [x] 출처 공고 카드 (Sources 표시)
+* [x] 부족한 기술 및 학습 방향 추천
 
 ---
 
@@ -37,22 +145,20 @@ CareerFit AI는 실제 취업 공고 데이터를 기반으로 사용자의 전�
 
 * 데이터 분석 및 AI 활용 역량 향상
 * 실제 채용 공고 데이터를 활용한 데이터 전처리 경험
-* Pandas, SQLite, ChromaDB를 활용한 데이터 파이프라인 구축
-* RAG(Retrieval-Augmented Generation) 기반 AI 서비스 구현
+* Pandas, SQLite, ChromaDB 기반 데이터 파이프라인 구축
+* RAG 기반 생성형 AI 서비스 구현
 * FastAPI와 React를 활용한 웹 서비스 개발
-* GitHub 포트폴리오로 활용 가능한 프로젝트 완성
+* GitHub 포트폴리오 프로젝트 완성
 
 ---
 
-# ✨ 주요 기능
+# 📅 진행 현황
 
-* 실제 취업 공고 데이터 조회
-* 사용자 전공 및 보유 기술 입력
-* 관심 직무 기반 맞춤형 분석
-* ChromaDB를 활용한 의미 기반(RAG) 공고 검색
-* Gemini API를 활용한 AI 역량 분석
-* 부족한 기술 및 학습 방향 추천
-* 추천 근거(Sources) 제공
+* [x] 1일차: 기획 및 개발 환경 세팅
+* [x] 2일차: FastAPI + Gemini API 연결
+* [x] 3일차: 데이터 파이프라인 구축
+* [x] 4일차: RAG 기반 서비스 + React UI
+* [ ] 5일차: Docker + 포트폴리오 완성
 
 ---
 
@@ -76,97 +182,39 @@ CareerFit AI는 실제 취업 공고 데이터를 기반으로 사용자의 전�
 
 ---
 
-# 📅 진행 현황
+# 📖 프로젝트 핵심 개념
 
-## ✅ 1일차 - 프로젝트 기획 및 개발 환경 구축
-
-* 프로젝트 기획
-* GitHub Repository 생성
-* Python 개발 환경 구축
-* 프로젝트 구조 설계
-
----
-
-## ✅ 2일차 - FastAPI 서버 및 Gemini API 연동
-
-* FastAPI 기반 REST API 구현
-
-  * `/health`
-  * `/jobs`
-  * `/analyze`
-* Gemini 2.5 Flash-Lite API 연동
-* Mock Mode 환경 구축
-* FastAPI 서버 실행 및 API 테스트 완료
+| 개념        | 설명                              |
+| --------- | ------------------------------- |
+| SQLite    | 구조화된 데이터를 저장하는 데이터베이스           |
+| ChromaDB  | 의미 기반 검색을 위한 벡터 데이터베이스          |
+| Vector    | 데이터를 숫자 벡터로 표현한 값               |
+| Embedding | 의미가 비슷한 데이터를 가까운 벡터 공간에 표현하는 기술 |
+| Metadata  | 회사명, 직무명, 마감일 등 공고의 추가 정보       |
+| RAG       | 검색된 데이터를 근거로 AI가 답변을 생성하는 방식    |
 
 ---
 
-## ✅ 3일차 - 데이터 파이프라인 구축
-
-* CSV 데이터 전처리
-* Pandas 활용
-* SQLite 저장
-* ChromaDB 구축
-* RAG 데이터 생성
-
----
-
-## ⏳ 4일차 - RAG 서비스 및 React UI
-
-예정
-
-* ChromaDB 검색
-* Gemini와 RAG 연동
-* React UI 구현
-* 분석 결과 화면 구현
-
----
-
-## ⏳ 5일차 - Docker 및 포트폴리오 완성
-
-예정
-
-* Docker 환경 구축
-* README 최종 정리
-* GitHub 포트폴리오 완성
-* 프로젝트 발표
-
----
-
-# 📚 개발 메모
+# 📝 개발 메모
 
 ## Python 가상환경
 
 ```bash
 python -m venv venv
+
+# Windows
 venv\Scripts\activate
+
+uvicorn main:app --reload
 ```
 
----
-
-## Git 명령어
+## Git
 
 ```bash
 git add .
 git commit -m "commit message"
 git push
 ```
-
-## 용어정리
- *쿼리(Query)
-    데이터베이스(SQLite)에 원하는 데이터를 조회, 추가, 수정, 삭제하도록 요청하는 명령어입니다.
-
----
-
-## 프로젝트 핵심 개념
-
-| 개념              | 설명                                   |
-| --------------- | ------------------------------------ |
-| SQLite          | 구조화된 데이터를 저장하는 데이터베이스                |
-| ChromaDB        | 의미 기반 검색을 위한 벡터 데이터베이스               |
-| 벡터(Vector)      | 데이터를 숫자 좌표로 표현한 값                    |
-| 임베딩(Embedding)  | 의미가 비슷한 데이터를 가까운 벡터 공간에 표현하는 기술      |
-| 메타데이터(Metadata) | 데이터의 추가 정보를 저장하는 속성(예: 회사명, 직무, 마감일) |
-| RAG             | 검색된 데이터를 근거로 AI가 답변을 생성하는 방식         |
 
 ---
 
@@ -184,4 +232,4 @@ git push
 
 ### 프로젝트 목표
 
-이번 프로젝트를 통해 실제 취업 공고 데이터를 분석하고 RAG 기반 AI 서비스를 구현하며, 데이터 분석 및 생성형 AI 활용 역량을 향상시키는 것을 목표로 했습니다.
+실제 취업 공고 데이터를 분석하고 RAG 기반 AI 서비스를 구현하며, 데이터 분석 및 생성형 AI 활용 역량을 향상시키는 것을 목표로 했습니다.

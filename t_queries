@@ -1,0 +1,12 @@
+[33m121af04[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m CareerFit AI day3 complete
+[33me113520[m CareerFit AI day3 complete
+[33m15ea601[m feat: FastAPI 서버 구축 및 Gemini API 연결 - /health, /jobs, /analyze 엔드포인트 구현 - Gemini 2.5 Flash-Lite API 연결 - mock mode 설정 (.env MOCK_MODE) - README 로컬 실행 방법 추가
+[33mcd04ff4[m feat: FastAPI 서버 구축 및 Gemini API 연결 - /health, /jobs, /analyze 엔드포인트 구현 - Gemini 2.5 Flash-Lite API 연결 - mock mode 설정 (.env MOCK_MODE) - README 로컬 실행 방법 추가
+[33me86ebc5[m feat: FastAPI 서버 구축 및 Gemini API 연결 - /health, /jobs, /analyze 엔드포인트 구현 - Gemini 2.5 Flash-Lite API 연결 - mock mode 설정 (.env MOCK_MODE) - README 로컬 실행 방법 추가
+[33m51e285c[m chore: 프로젝트 초기 구조 및 하네스 파일 세팅
+[33m5a6ddf8[m API_KEY_UPDATE
+[33mabc3c47[m 초기 폴더 세팅 및 하네스 세팅
+[33m1c4422d[m 수정3 README.md
+[33m1690a8d[m 수정 README.md
+[33m26e090f[m Update README.md
+[33m3fa54d4[m Initial commit
