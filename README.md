@@ -84,8 +84,6 @@ http://localhost:8000/docs
 ```bash
 cd frontend
 
-npm install
-
 npm run dev
 ```
 
@@ -158,7 +156,7 @@ Gemini API
 * [x] 2일차: FastAPI + Gemini API 연결
 * [x] 3일차: 데이터 파이프라인 구축
 * [x] 4일차: RAG 기반 서비스 + React UI
-* [ ] 5일차: Docker + 포트폴리오 완성
+* [x] 5일차: Docker + 포트폴리오 완성
 
 ---
 
@@ -215,6 +213,10 @@ git add .
 git commit -m "commit message"
 git push
 ```
+
+## Docker 실행
+# powershell
+docker run -p 8000:8000 --env-file .env careerfit-ai
 
 ---
 
