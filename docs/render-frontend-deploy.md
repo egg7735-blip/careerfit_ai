@@ -83,8 +83,8 @@ Render 공식 문서 기준으로 Docker 배포는 서비스 생성 시 Language
 3. GitHub 저장소를 연결합니다.
 4. 서비스 이름을 정합니다. 예: `careerfit-frontend`.
 5. Language를 `Docker`로 선택합니다.
-6. Dockerfile Path에 `frontend/Dockerfile`을 입력합니다.
-7. Root Directory 설정이 필요하면 `frontend`를 입력합니다. Render 화면 구성에 따라 Dockerfile Path와 Root Directory 중 하나만 맞게 지정해도 됩니다.
+6. Root Directory는 비워둡니다.
+7. Dockerfile Path에 `frontend/Dockerfile`을 입력합니다.
 8. Environment Variables에 `VITE_API_BASE_URL`을 추가합니다.
 9. Create Web Service를 눌러 배포합니다.
 10. 배포가 끝나면 발급된 `https://your-frontend-service.onrender.com` 주소를 확인합니다.
