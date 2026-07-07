@@ -56,9 +56,27 @@ FastAPI (/analyze)
 
 # 🚀 실행 방법
 
-## 백엔드 실행
+### Docker로 실행 (권장)
 
 ```bash
+
+# 1. 이미지 빌드
+
+docker build -t careerfit-ai ./backend
+
+# 2. 컨테이너 실행
+
+docker run -p 8000:8000 --env-file backend/.env careerfit-ai
+
+```
+
+API 문서: http://localhost:8000/docs
+
+### 로컬 실행
+
+```bash
+
+Backend
 cd backend
 
 python -m venv venv
@@ -69,34 +87,29 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 uvicorn main:app --reload
-```
 
-백엔드 API 문서
-
-```
-http://localhost:8000/docs
-```
-
----
-
-## 프론트엔드 실행
-
-```bash
+Frontend
 cd frontend
 
+npm install
+
 npm run dev
-```
 
-프론트엔드
+Frontend
 
-```
 http://localhost:5173
-```
 
-백엔드 API
+Backend API
 
-```
 http://localhost:8000/docs
+
+# Git
+
+```bash
+
+git add .
+git commit -m "commit message"
+git push
 ```
 
 ---
@@ -129,34 +142,69 @@ Gemini API
 
 # ✨ 주요 기능
 
-* [x] 역량 분석 입력 폼 (전공·스킬·관심 직무)
-* [x] 실제 취업 공고 데이터 조회
-* [x] ChromaDB 기반 의미 검색(RAG)
-* [x] Gemini API 기반 AI 역량 분석
-* [x] RAG 기반 AI 분석 결과 카드
-* [x] 출처 공고 카드 (Sources 표시)
-* [x] 부족한 기술 및 학습 방향 추천
+- RAG 기반 역량 분석: 취업 공고 데이터를 근거로 맞춤형 조언 제공
+
+- 출처 표시: 어떤 공고 데이터를 참고했는지 sources로 함께 반환
+
+- Mock Mode: API 한도 초과 시 MOCK_MODE=true 로 폴백 가능
 
 ---
 
-# 🎯 프로젝트 목표
+# 📁 프로젝트 구조
 
-* 데이터 분석 및 AI 활용 역량 향상
-* 실제 채용 공고 데이터를 활용한 데이터 전처리 경험
-* Pandas, SQLite, ChromaDB 기반 데이터 파이프라인 구축
-* RAG 기반 생성형 AI 서비스 구현
-* FastAPI와 React를 활용한 웹 서비스 개발
-* GitHub 포트폴리오 프로젝트 완성
+```
+
+careerfit-ai/
+
+├── backend/ # FastAPI 서버
+
+│ ├── main.py
+
+│ ├── routers/
+
+│ ├── services/
+
+│ ├── data/
+
+│ └── Dockerfile
+
+├── frontend/ # React UI
+
+└── docs/ # 하네스 파일 모음
+```
 
 ---
 
-# 📅 진행 현황
+# 📈 검증
 
-* [x] 1일차: 기획 및 개발 환경 세팅
-* [x] 2일차: FastAPI + Gemini API 연결
-* [x] 3일차: 데이터 파이프라인 구축
-* [x] 4일차: RAG 기반 서비스 + React UI
-* [x] 5일차: Docker + 포트폴리오 완성
+## API 검증
+
+* `/health` 엔드포인트를 통해 FastAPI 서버가 정상적으로 실행되는지 확인했습니다.
+* `/analyze` 엔드포인트 호출 시 AI 분석 결과와 함께 `sources`가 정상적으로 반환되는지 검증했습니다.
+
+## RAG 검증
+
+* 다양한 질문으로 ChromaDB 검색을 수행하여 질문과 의미적으로 유사한 채용 공고가 검색되는지 확인했습니다.
+* 검색된 공고를 근거로 Gemini가 답변을 생성하는지 검증했습니다.
+
+## UI 검증
+
+* React UI에서 입력 폼, 분석 결과 카드, 출처 카드가 정상적으로 출력되는지 확인했습니다.
+* FastAPI와 React 간 API 연동이 정상적으로 동작하는지 확인했습니다.
+
+## Docker 검증
+
+* Docker Image가 정상적으로 빌드되는지 확인했습니다.
+* Docker Container 실행 후 `/health` 엔드포인트가 정상적으로 응답하는지 확인했습니다.
+
+---
+
+# 📂 데이터
+
+CareerFit AI는 실제 채용 공고 데이터를 기반으로 사용자의 전공, 보유 기술, 관심 직무를 분석합니다.
+
+수집한 채용 공고 데이터는 Pandas를 활용하여 결측치와 중복 데이터를 전처리한 후 SQLite에 구조화하여 저장했습니다. 또한 동일한 데이터를 ChromaDB에 임베딩하여 의미 기반(RAG) 검색에 활용하고, 검색된 공고를 근거로 AI가 맞춤형 분석 결과를 생성하도록 구현했습니다.
+
 
 ---
 
@@ -180,58 +228,20 @@ Gemini API
 
 ---
 
-# 📖 프로젝트 핵심 개념
+# 📸 Demo
 
-| 개념        | 설명                              |
-| --------- | ------------------------------- |
-| SQLite    | 구조화된 데이터를 저장하는 데이터베이스           |
-| ChromaDB  | 의미 기반 검색을 위한 벡터 데이터베이스          |
-| Vector    | 데이터를 숫자 벡터로 표현한 값               |
-| Embedding | 의미가 비슷한 데이터를 가까운 벡터 공간에 표현하는 기술 |
-| Metadata  | 회사명, 직무명, 마감일 등 공고의 추가 정보       |
-| RAG       | 검색된 데이터를 근거로 AI가 답변을 생성하는 방식    |
+- Frontend: https://careerfit-ai-frontend-aujm.onrender.com
 
----
-
-# 📝 개발 메모
-
-## Python 가상환경
-
-```bash
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-
-uvicorn main:app --reload
-```
-
-## Git
-
-```bash
-git add .
-git commit -m "commit message"
-git push
-```
-
-## Docker 실행
-# powershell
-docker run -p 8000:8000 --env-file .env careerfit-ai
+- Backend API: https://careerfit-ai-q80r.onrender.com
 
 ---
 
 # 👨‍💻 개발자
 
-**기계정보공학과**
+- Name: 신혁진
 
-### 관심 분야
+- Role: Backend / AI Service Development
 
-* 데이터 분석
-* 기계설계
-* 설비 및 생산기술
-* Python 자동화
-* 생성형 AI 활용 서비스 개발
+- GitHub: @egg7735-blip
 
-### 프로젝트 목표
-
-실제 취업 공고 데이터를 분석하고 RAG 기반 AI 서비스를 구현하며, 데이터 분석 및 생성형 AI 활용 역량을 향상시키는 것을 목표로 했습니다.
+- Email: egg7735@gmail.com

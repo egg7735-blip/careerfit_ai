@@ -54,3 +54,6 @@ Thumbs.db
 .continue/config.yaml
 .continue/*.yaml
 .continue/*.json
+
+# 기록용 회고 파일
+RETROSPECTIVE.md
